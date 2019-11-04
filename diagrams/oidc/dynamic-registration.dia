@@ -1,0 +1,9 @@
+  title OIDC Dynamic Registration Endpoint
+ # v1.0a
+
+ Relying-Party\n(Service Provider)->+OpenId Provider: POST /registration\ndata:{\n"redirect_uris": ["https://rp.fqdn.org/authz_cb/djop"],\n"application_type": "web",\n "token_endpoint_auth_method": "client_secret_basic",\n "grant_types": ["authorization_code"],\n "post_logout_redirect_uris": ["https://rp.fqdn.org"],\n "contacts": ["ops@rp.fqdn.org"],\n "response_types": ["code"],\n "jwks_uri": "https://rp.fqdn.org/static/jwks.json"}
+ OpenId Provider-->Relying-Party\n(Service Provider): GET fetch keys from https://rp.fqdn.org/static/jwks.json
+ Relying-Party\n(Service Provider)->OpenId Provider: Response {"keys":\n [{"kty": "RSA","use": "sig","kid": "[...]","n": "[...]", "e": "AQAB"},\n {"kty": "EC","use": "sig", "kid": "kid": "[...]", "crv": "P-256", "x": "[...]", "y": "[...]"}]}
+ OpenId Provider->OpenId Provider: Build RP KeyBundle and store session (cookie)
+ OpenId Provider-->-Relying-Party\n(Service Provider): Response {"grant_types": ["authorization_code"],\n "post_logout_redirect_uris": ["https://rp.fqdn.org"],\n "jwks_uri": "https://rp.fqdn.org/static/jwks.json",\n "contacts": ["ops@example.com"],\n "registration_client_uri": "registration?client_id=ISFDRFTWpcZg",\n "client_id": "ISFDRFTWpcZg",\n "application_type": "web",\n "token_endpoint_auth_method": "client_secret_basic",\n "client_id_issued_at": 1572511631,\n "client_secret_expires_at": 1572943631,\n "registration_access_token": "IdcdmVmihUfRkNfXsC6OaNaKoXzgk8Xx",\n "response_types": ["code"],\n "redirect_uris": ["https://rp.fqdn.org/authz_cb/djop"],\n"client_secret": "bd2bfaea4b08c70d873ec0776454fc68a6231105e642baf7ee1a2cb1"}
+ Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Validate authorization code\n with OP Keybundle
