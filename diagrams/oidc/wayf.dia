@@ -1,0 +1,7 @@
+  title OIDC select the Provider via RP Internal resource (Wayf)
+ # v1.0a
+
+ User-Agent->Relying-Party\n(Service Provider): GET /login
+ Relying-Party\n(Service Provider)-->User-Agent: Http Response
+   note right of User-Agent: Select from a list of Providers reachable by rp.fqdn.org
+ User-Agent->Relying-Party\n(Service Provider): GET /rp?uid=&iss=https://op.fqdn.org
