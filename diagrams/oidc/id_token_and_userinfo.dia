@@ -1,0 +1,19 @@
+  title OIDC Id Token and Userinfo
+ # v1.0a
+ User-Agent->+Relying-Party\n(Service Provider): GET https://rp.fqdn.org/authz_cb/djop?\nstate=sjX33fkHGIRLi8[...]&\ncode=R111RTB5UW9x[...]&\nsession_state=433769f923[...].zujddLIZnA1NKWux&\nclient_id=ISFDRFTWpcZg&\nscope=openid+profile+email+address+phone&\niss=https%3A%2F%2Fop.fqdn.org'
+ Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Verify response with {'client_id': 'ISFDRFTWpcZg',\n 'skew': 15,\n 'verify': True,\n 'keyjar': <KeyJar(issuers=['', 'https://op.fqdn.org'])>,\n 'iss': 'https://op.fqdn.org'}
+ 
+ Relying-Party\n(Service Provider)->OpenId Provider: POST to https://op.fqdn.org/token: \n'headers': {\n'Content-Type': 'application/x-www-form-urlencoded',\n'Authorization': 'Basic SVNGRFJGVFdwY1pnOmJkMmJm[...]'\nData: code=Z0FBQUFBQmR1[...]%3D,\nstate=sjX33fkHGIRLi[...]\ngrant_type=authorization_code,\nredirect_uri=https://rp.fqdn.org/Fauthz_cb/Fdjop,\nclient_id=ISFDRFTWpcZg
+  OpenId Provider->OpenId Provider: Validate request
+ 
+ OpenId Provider-->Relying-Party\n(Service Provider): Returns the Id Token encoded in JWT format\n{'auth_time': 1572511651,\n 'sub': '8032[...]',\n'iss': 'https://op.fqdn.org',\n'email': 'peppe@ciao.it',\n'iat': 1572511662,\n'nonce': 'VheGmPQTsIunXiZSJUBuij7k',\n'acr': 'user_authn_context.INTERNETPROTOCOLPASSWORD',\n'kid': 'bWtoRz[...]',\n'aud': ['ISFDRFTWpcZg'],\n'exp': 1572511962}\n
+  Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Signature verification
+ 
+ Relying-Party\n(Service Provider)->OpenId Provider: GET https://op.fqdn.org/userinfo\nHeaders: Authorization': 'Bearer eyJraWQiOiJUC[...]'}
+  OpenId Provider->OpenId Provider: Validate request
+ OpenId Provider-->Relying-Party\n(Service Provider): Response {"family_name": "dm",\n "given_name": "peppe",\n "phone_number": null,\n "email": "peppe@ciao.it",\n "sub": "8032[...]"}'}
+  Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Signature verification
+ 
+ Relying-Party\n(Service Provider)-->-User-Agent: Http Redirect (302): URL https://rp.fqdn.org/authz_cb/djop?state=sjX33fkHGI[...]&\nsession_state=4337[...].zujddLIZnA1NKWux&\nclient_id=ISFDRFTWpcZg&\nscope=openid+profile+email+address+phone&\niss=https%3A%2F%2Fop.fqdn.org
+ User-Agent->Relying-Party\n(Service Provider): GET the preivous url
+ Relying-Party\n(Service Provider)-->User-Agent: Page showing Userinfo data
