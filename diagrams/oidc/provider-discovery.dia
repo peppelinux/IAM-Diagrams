@@ -1,0 +1,9 @@
+  title OIDC Provider Provider Discovery
+ # v1.0a
+
+ Relying-Party\n(Service Provider)->OpenId Provider: GET https://op.fqdn.org/.well-known/openid-configuration
+ OpenId Provider-->Relying-Party\n(Service Provider): Response {JSON metadata}
+  note right of Relying-Party\n(Service Provider): Fetch OP JWKs from its 'jwk_uris'
+ Relying-Party\n(Service Provider)->OpenId Provider: GET https://op.fqdn.org/static/jwks.json
+ OpenId Provider-->Relying-Party\n(Service Provider): Response JWKs
+ Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Store OP JWK Keypair
