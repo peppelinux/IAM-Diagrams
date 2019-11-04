@@ -1,0 +1,11 @@
+# Render with https://www.websequencediagrams.com
+
+  title OIDC select the Provider via Discovery Service
+ # v1.0a
+
+ User-Agent->Relying-Party\n(Service Provider): GET /login
+ Relying-Party\n(Service Provider)-->User-Agent: Http Response Redirect (302)\n https://ds.fqdn.org/disco?entityID=rp.fqdn&return=https://rp.fqdn.org/disco
+ User-Agent->Discovery Service \n(Select Identity Provider): GET /disco?entityID=rp.fqdn&return=https://rp.fqdn.org/disco
+ Discovery Service \n(Select Identity Provider)-->User-Agent: Http Response /disco?entityID=rp.fqdn&return=https://rp.fqdn.org/disco
+  note right of User-Agent: Select from a list of Providers reachable by rp.fqdn.org
+ User-Agent->Relying-Party\n(Service Provider): GET /disco?entityID=op.fqdn
