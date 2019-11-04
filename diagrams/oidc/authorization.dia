@@ -1,0 +1,12 @@
+  title OIDC Authorization and Authentication
+ # v1.0a
+ User-Agent<->Relying-Party\n(Service Provider): Redirect (302): GET https://op.fqdn.org/authorization?\nscope=openid+profile+email+address+phone&\nresponse_type=code&redirect_uri=https%3A%2F%2Frp.fqdn.org%2Fauthz_cb%2Fdjop&\nnonce=VheGmPQTsIunXiZSJUBuij7k&\nclient_id=ISFDRFTWpcZg&\nstate=sjX33fkHGIRLi8g5BFGmOb7B3YM4i1G3 Relying-Party\n(Service Provider)->OpenId Provider: GET https://op.fqdn.org/.well-known/openid-configuration
+ User-Agent->OpenId Provider: GET the previous url
+ OpenId Provider->+OpenId Provider: Parse request
+ 
+ OpenId Provider-->User-Agent: Response: Authentication HTML Form
+ User-Agent->OpenId Provider: POST username, password and token
+ OpenId Provider->-OpenId Provider: Authenticate the user
+
+ OpenId Provider-->User-Agent: Redirect (302): https://rp.fqdn.org/authz_cb/djop?\nstate=sjX33fkHGIRLi8[...]&\ncode=R111RTB5UW9x[...]&\nsession_state=433769f923[...].zujddLIZnA1NKWux&\nclient_id=ISFDRFTWpcZg&\nscope=openid+profile+email+address+phone&\niss=https%3A%2F%2Fop.fqdn.org'
+  note right of User-Agent: Authorization granted to that scopes
