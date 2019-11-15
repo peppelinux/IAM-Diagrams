@@ -1,0 +1,7 @@
+ title Implicit Flow response_type=token
+ # v1.0a
+
+Client->+Provider: Request to Authorization endpoint
+Provider->Provider: Validation / Authentication sequence
+Provider-->-Client: Release of Access Token only
+note right of Client:  { "expires_in": 3600,\n "token_type": "Bearer",\n "access_token": [...]}
