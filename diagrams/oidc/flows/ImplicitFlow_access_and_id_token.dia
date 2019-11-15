@@ -4,4 +4,4 @@
 Client->+Provider: Request to Authorization endpoint
 Provider->Provider: Validation / Authentication sequence
 Provider-->-Client: Release of both Access and ID Token
-note right of Client:  { "expires_in": 3600,\n "token_type": "Bearer",\n "id_token": [...], "access_token":[...]}
+note right of Client:  { "expires_in": 3600,\n "token_type": "Bearer",\n "id_token": [...],\n "at_hash": [...]}
