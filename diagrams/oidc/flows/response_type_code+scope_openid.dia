@@ -1,0 +1,9 @@
+ title response_type=code and scope=openid
+ # v1.0a
+
+Client->+Provider: Request to Authorization endpoint
+Provider->Provider: Validation / Authentication sequence
+Provider-->-Client: Authorization code
+Client->+Provider: Request to Token endpoint
+Provider-->-Client: Release of Access Token and ID Token
+note right of Client:  { "id_token": [...],\n "expires_in": 3600,\n "token_type": "Bearer",\n "access_token": [...]}
