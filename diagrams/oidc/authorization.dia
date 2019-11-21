@@ -1,6 +1,6 @@
   title OIDC Authorization and Authentication
- # v1.0a
- User-Agent<->Relying-Party\n(Service Provider): Redirect (302): GET https://op.fqdn.org/authorization?\nscope=openid+profile+email+address+phone&\nresponse_type=code&redirect_uri=https%3A%2F%2Frp.fqdn.org%2Fauthz_cb%2Fdjop&\nnonce=VheGmPQTsIunXiZSJUBuij7k&\nclient_id=ISFDRFTWpcZg&\nstate=sjX33fkHGIRLi8g5BFGmOb7B3YM4i1G3 Relying-Party\n(Service Provider)->OpenId Provider: GET https://op.fqdn.org/.well-known/openid-configuration
+
+ Relying-Party->User-Agent: Redirect (302) GET https://op.fqdn.org/authorization?\nscope=openid+profile+email+address+phone&\nresponse_type=code&redirect_uri=https%3A%2F%2Frp.fqdn.org%2Fauthz_cb%2Fdjop&\nnonce=VheGmPQTsIunXiZSJUBuij7k&\nclient_id=ISFDRFTWpcZg&\nstate=sjX33fkHGIRLi8g5BFGmOb7B3YM4i1G3
  User-Agent->OpenId Provider: GET the previous url
  OpenId Provider->+OpenId Provider: Parse request
  
