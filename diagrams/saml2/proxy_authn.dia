@@ -1,0 +1,28 @@
+ 
+ title SAML2 Proxy authn request and response flow
+ # v1.0a
+
+ User-Agent->+Service Provider: GET a protected resource
+ Service Provider-->User-Agent: Response with Authn request to the IdP (Proxy)
+ User-Agent->+AA Proxy: POST/GET Authn Request 
+ AA Proxy->AA Proxy: Check entity presence in its metadata store\nValidate request,\n check optional routing based on \n requester or recipient
+ AA Proxy->AA Proxy: Apply Request Micro Services
+ AA Proxy-->User-Agent: Response Redirect (302) to discovery service
+ User-Agent->+Discovery Service: GET /disco?entityID=proxy.sp.fqdn&return=https://proxy.sp.fqdn.org/disco
+ Discovery Service-->User-Agent:  An HTML page containing all the authn endpoints available for the requesting SP
+ User-Agent->Discovery Service: GET the selected Authn endpoint
+ Discovery Service-->-User-Agent: Response Redirect (302) https://proxy.sp.fqdn.org/disco?entityID=idp.fqdn
+ User-Agent->AA Proxy: GET /disco?entityID=idp.fqdn
+ AA Proxy->AA Proxy: Translate Authn Request from Frontend to Backend\n forge a brand new Authn Request\n to the Auth endpoint
+ AA Proxy-->-User-Agent: Response: A JavaScript auto submit form or a GET carryning an\nauthn forged for the requested idp
+ User-Agent->+Identity Provider: POST the authn request forged by Idp Proxy backend
+ Identity Provider-->User-Agent: Response with the Authentication page (HTML form)
+ User-Agent->Identity Provider: POST credentials (other MFA may occour)
+ Identity Provider-->User-Agent: Response Authentication succesfull (Data and privacy agreement may occour)
+ User-Agent->Identity Provider: Data and privacy agreement may occour
+ Identity Provider-->-User-Agent: Response (JS auto submit form) Authn Response forged for the requesting Service Provider
+ User-Agent->+AA Proxy: POST Authn Response
+ AA Proxy->AA Proxy: Format/Signing/Encryption/Attributes and other policy validations\n link to related session
+ AA Proxy->AA Proxy: Apply Response Micro Services for, \n Account linking  \n attribute processing\n may other
+ AA Proxy-->User-Agent: SAML2 Authn Response to be transmitted to requester SP\n GET 302 redirect or POST with JS form submission
+ User-Agent->Service Provider: Post the Proxy Authn response and access to the a protected resource
