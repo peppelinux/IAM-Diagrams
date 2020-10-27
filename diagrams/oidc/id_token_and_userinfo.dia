@@ -3,7 +3,7 @@
  # v1.0a
  Relying-Party\n(Service Provider)->Relying-Party\n(Service Provider): Verify response with {'client_id': 'ISFDRFTWpcZg',\n 'skew': 15,\n 'verify': True,\n 'keyjar': <KeyJar(issuers=['', 'https://op.fqdn.org'])>,\n 'iss': 'https://op.fqdn.org'}
  
- Relying-Party\n(Service Provider)->OpenId Provider: POST to https://op.fqdn.org/token: \n'headers': {\n'Content-Type': 'application/x-www-form-urlencoded',\n'Authorization': 'Basic SVNGRFJGVFdwY1pnOmJkMmJm[...]'\nData: code=Z0FBQUFBQmR1[...]%3D,\nstate=sjX33fkHGIRLi[...]\ngrant_type=authorization_code,\nredirect_uri=https://rp.fqdn.org/Fauthz_cb/Fdjop,\nclient_id=ISFDRFTWpcZg
+ Relying-Party\n(Service Provider)->OpenId Provider: POST to https://op.fqdn.org/token: \n'headers': {\n'Content-Type': 'application/x-www-form-urlencoded',\n'Authorization': 'Basic SVNGRFJGVFdwY1pnOmJkMmJm[...]'\nData: code=Z0FBQUFBQmR1[...]%3D,\nstate=sjX33fkHGIRLi[...]\ncode_verifier=0Ju[...]'\ngrant_type=authorization_code,\nredirect_uri=https://rp.fqdn.org/Fauthz_cb/Fdjop,\nclient_id=ISFDRFTWpcZg
   OpenId Provider->OpenId Provider: Validate request
  
  OpenId Provider-->Relying-Party\n(Service Provider): Returns the Tokens encoded in JWT format\n{"access_token": "eyJ[..].eyJza[...].FRc[...]",\n"token_type": "Bearer",\n"expires_in": 3600,\n"id_token": "eyJ[...].eyJzd[...].TnT19V[...]"\n}
