@@ -1,3 +1,5 @@
+these sequence can be rendered with [mermaid.js](https://mermaid-js.github.io/mermaid-live-editor/#/edit/).
+
 # SAML2 AuthnFlow with Discovery Service
 
 ````
