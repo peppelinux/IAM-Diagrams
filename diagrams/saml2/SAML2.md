@@ -61,7 +61,9 @@ sequenceDiagram
  User-Agent->>Service Provider: GET a protected resource that needs Extended User Attributes
  
  Service Provider->>Service Provider: assert that needed Attributes belongs to a public profile
- Service Provider-->>Attribute Authority: GET Attributes
+ Service Provider->>Attribute Authority: GET Attributes
+
+ Attribute Authority-->>Service Provider: Response with Attributes
 ````
 
 # SAML2 SPID AA private profile
