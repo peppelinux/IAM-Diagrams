@@ -70,29 +70,28 @@ sequenceDiagram
  User-Agent->>Service Provider: GET a protected resource that needs Extended User Attributes
  
  Service Provider->>Service Provider: assert needed Attributes belongs to a private scope
- Service Provider->>Service Provider: assert Attribute Authority to query
+ Service Provider->>Service Provider: assert Attribute Authority to query (check Registry)
  Service Provider->>Service Provider: assert to have a user consent token to get attributes from AA -> it have not
  
  Service Provider->>User-Agent: Informational page that explain what happens: there'll be a request to a AA for these attributes
  User-Agent->>Service Provider: GET Confirmation
- Service Provider->>User-Agent: REDIRECT https://aa.spid.it/protected/resource/?idp=https://entityid.idp.spid.it&next=https://sp.spid.it/sp/return/attributes/resource 
+ Service Provider-->>User-Agent: REDIRECT https://aa.spid.it/protected/resource/?idp=https://entityid.idp.spid.it&next=https://sp.spid.it/sp/return/attributes/resource 
  
 
  rect rgba(0, 0, 255, .1)
  User-Agent->>+AA: GET the protected resource
- AA->>User-Agent: An Informational page about what's happening
- AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) with an authn request to IdP
+ AA-->>User-Agent: Informational page about what's happening. A form with a hidden authn request from AA to IdP
  end
  
  rect rgba(252, 226, 233.1)
- User-Agent->>+Identity Provider: POST the sp authn request
-Note over User-Agent,Identity Provider: A SAML2 Authn occour between AA and IDP
- Identity Provider-->>-User-Agent: Response (JS auto submit form) Authn Response forged for the requesting Service Provider (AA)
+ User-Agent->>+Identity Provider: POST the SP (AA) authn request
+Note over User-Agent,Identity Provider: A SAML2 Authn occour between AA and IDP - See SAML2 Authn Flow
+ Identity Provider-->>-User-Agent: Response (JS auto submit form) Authn Response for the requesting Service Provider (AA)
  end
 
  User-Agent->>+AA: POST Authn Response
- AA-->>AA: Create a token for SP$USER
- AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) the Token to SP
+ AA-->>AA: Create a token for SP-USER
+ AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) with the Token to SP
  User-Agent->>+Service Provider: POST token (may additional security envelop can occour)
  Service Provider->>Service Provider: Store the token-user-sp
  Service Provider-->>-User-Agent: Redirect to resource
