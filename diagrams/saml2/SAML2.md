@@ -139,26 +139,26 @@ sequenceDiagram
  
  rect rgba(226, 252, 229, .1)
  Service Provider->>AA: Token Exchance<br>HTTP POST with Basic Auth<br>https://aa.example.org/oauth2/token/exchange/saml2<br>-<br>client_id state code code_verifier grant_type <br> requested_token_type subject_token subject_token_type
- AA-->>AA: stores the token<br>SP-user-scope
+ AA-->>AA: Stores the token<br>related to<br>SP, user, scope.
  AA-->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
  end
 
- Service Provider-->>Service Provider: Stores the token related to<br>subject_id, AA and scope
+ Service Provider-->>Service Provider: Stores the token<br>related to<br>AA, user, scope.
 ````
 
 
 Big Picture
 ````
 sequenceDiagram
-    IDP->>SP: SAML2 Response<br>succesfull <br>user authentication
+    IDP->>SP: SAML2 Response<br>succesfull Status
     
     rect rgba(255, 219, 167, .1)
     SP->>User: Ask consent
-    User-->>SP: Give Consent
+    User-->>SP: Gave Consent
     end
 
     rect rgba(167, 255, 167, .1)
-    SP->>STS: Authorization Request to exchange <br>SAML2 Bearer Token <br>with a token with specific scopes
+    SP->>STS: Authorization Request to exchange <br>a SAML2 Bearer Token <br>with an access token <br>for other scopes
     STS-->>SP: Authorization granted
     SP->>STS: Request to exchange the SAML2 bearer token 
     STS-->>SP: Access Token
