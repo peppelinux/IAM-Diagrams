@@ -1,5 +1,3 @@
-these sequence can be rendered with [mermaid.js](https://mermaid-js.github.io/mermaid-live-editor/#/edit/).
-
 # SAML2 AuthnFlow with Discovery Service
 
 ````
@@ -61,9 +59,7 @@ sequenceDiagram
  User-Agent->>Service Provider: GET a protected resource that needs Extended User Attributes
  
  Service Provider->>Service Provider: assert that needed Attributes belongs to a public profile
- Service Provider->>Attribute Authority: GET Attributes
-
- Attribute Authority-->>Service Provider: Response with Attributes
+ Service Provider-->>Attribute Authority: GET Attributes
 ````
 
 # SAML2 SPID AA private profile
@@ -74,31 +70,78 @@ sequenceDiagram
  User-Agent->>Service Provider: GET a protected resource that needs Extended User Attributes
  
  Service Provider->>Service Provider: assert needed Attributes belongs to a private scope
- Service Provider->>Service Provider: assert Attribute Authority to query
+ Service Provider->>Service Provider: assert Attribute Authority to query (check Registry)
  Service Provider->>Service Provider: assert to have a user consent token to get attributes from AA -> it have not
  
  Service Provider->>User-Agent: Informational page that explain what happens: there'll be a request to a AA for these attributes
- Service Provider->>User-Agent: REDIRECT https://aa.spid.it/protected/resource/?idp=https://entityid.idp.spid.it&next=https://sp.spid.it/sp/return/attributes/resource 
+ User-Agent->>Service Provider: GET Confirmation
+ Service Provider-->>User-Agent: REDIRECT https://aa.spid.it/protected/resource/?idp=https://entityid.idp.spid.it&next=https://sp.spid.it/sp/return/attributes/resource 
  
 
  rect rgba(0, 0, 255, .1)
  User-Agent->>+AA: GET the protected resource
- AA->>User-Agent: An Informational page about what's happening
- AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) with an authn request to IdP
+ AA-->>User-Agent: Informational page about what's happening. A form with a hidden authn request from AA to IdP
  end
  
  rect rgba(252, 226, 233.1)
- User-Agent->>+Identity Provider: POST the sp authn request
-Note over User-Agent,Identity Provider: A SAML2 Authn occour between AA and IDP
- Identity Provider-->>-User-Agent: Response (JS auto submit form) Authn Response forged for the requesting Service Provider (AA)
+ User-Agent->>+Identity Provider: POST the SP (AA) authn request
+Note over User-Agent,Identity Provider: A SAML2 Authn occour between AA and IDP - See SAML2 Authn Flow
+ Identity Provider-->>-User-Agent: Response (JS auto submit form) Authn Response for the requesting Service Provider (AA)
  end
 
  User-Agent->>+AA: POST Authn Response
- AA-->>AA: Create a token for SP$USER
- AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) the temporary-secret to SP
- User-Agent->>+Service Provider: POST temporary secret
- Service Provider->>AA: Sends temporary secret
- AA-->>Service Provider: GET Token
+ AA-->>AA: Create a token for SP-USER
+ AA-->>-User-Agent: HTTP-POST Binding Response (JS auto submit form) with the Token to SP
+ User-Agent->>+Service Provider: POST token (may additional security envelop can occour)
  Service Provider->>Service Provider: Store the token-user-sp
  Service Provider-->>-User-Agent: Redirect to resource
+````
+
+SP to AA with Token Exchange
+
+````
+sequenceDiagram
+ Note right of User-Agent: User have been authenticated to IdP and still have an active session to SP
+ User-Agent->>Service Provider: GET a protected resource that needs Extended User Attributes
+ 
+ Service Provider->>Service Provider: assert Attribute Authority to query
+ Service Provider->>Service Provider: assert token possession (user consent)<br>to get attributes from AA <br>on behalf the user
+ 
+ alt token is unavailable or expired
+ Service Provider-->>User-Agent: Informational page<br>an AA is going to be involved<br>ask consent to the user
+ User-Agent->>Service Provider: User Consent
+
+ rect rgba(0, 0, 255, .1)
+ Service Provider->>+AA: OAuth2 Client authz with PKCE
+ AA-->>Service Provider: Response: OAuthn authz Code 
+ Service Provider->>AA: Token exchange method
+ AA->>AA: Store the token-user-sp
+ AA-->>Service Provider: Access Token obtained
+ end
+ 
+ end
+ 
+ Service Provider->>AA: Rest HTTP request for Attributes<br>with token
+ AA-->>Service Provider: Response with Attributes
+ Service Provider-->>User-Agent: Redirect to resource
+````
+
+
+Token exchange SAML2 - OAuth2
+````
+sequenceDiagram
+ Note right of Service Provider: The Service Provider already have been registered to the Attribute Authority
+ 
+ rect rgba(0, 0, 255, .1)
+ Service Provider->>AA: Authz Request<br>HTTP POST to https://aa.example.org/oauth2/authorization<br>parameters<br>scope response_type state code_challenge code_challenge_method client_id
+ AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint/registered_path<br>code client_id scope state iss
+ end
+ 
+ rect rgba(226, 252, 229, .1)
+ Service Provider->>AA: Token Exchance<br>HTTP POST with Basic Auth<br>https://aa.example.org/oauth2/token/exchange/saml2<br>-<br>client_id state code code_verifier grant_type <br> requested_token_type subject_token subject_token_type
+ AA-->>AA: stores the token<br>SP-user-scope
+ AA-->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
+ end
+
+ Service Provider-->>Service Provider: Stores the token related to<br>subject_id, AA and scope
 ````
