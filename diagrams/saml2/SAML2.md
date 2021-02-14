@@ -145,3 +145,14 @@ sequenceDiagram
 
  Service Provider-->>Service Provider: Stores the token related to<br>subject_id, AA and scope
 ````
+
+Big Picture
+````
+sequenceDiagram
+    IDP->>SP: SAML2 Response with a succesfull <br>user authentication
+    SP->>STS: Request to be authorized to exchange <br>SAML2 Bearer Token <br>with a token with specific scopes
+    STS-->>SP: Authorization granted
+    SP->>STS: Request to exchange the SAML2 bearer token 
+    STS-->>SP: Access Token
+    SP->>RS: Request resources with Access Token
+````
