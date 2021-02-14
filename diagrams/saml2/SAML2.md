@@ -134,7 +134,7 @@ sequenceDiagram
  
  rect rgba(0, 0, 255, .1)
  Service Provider->>AA: Authz Request<br>HTTP POST to https://aa.example.org/oauth2/authorization<br>parameters<br>scope response_type state code_challenge code_challenge_method client_id
- AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint<br>code client_id scope state iss
+ AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint/registered_path<br>code client_id scope state iss
  end
  
  rect rgba(226, 252, 229, .1)
@@ -146,13 +146,23 @@ sequenceDiagram
  Service Provider-->>Service Provider: Stores the token related to<br>subject_id, AA and scope
 ````
 
+
 Big Picture
 ````
 sequenceDiagram
-    IDP->>SP: SAML2 Response with a succesfull <br>user authentication
-    SP->>STS: Request to be authorized to exchange <br>SAML2 Bearer Token <br>with a token with specific scopes
+    IDP->>SP: SAML2 Response<br>succesfull <br>user authentication
+    
+    rect rgba(255, 219, 167, .1)
+    SP->>User: Ask consent
+    User-->>SP: Give Consent
+    end
+
+    rect rgba(167, 255, 167, .1)
+    SP->>STS: Authorization Request to exchange <br>SAML2 Bearer Token <br>with a token with specific scopes
     STS-->>SP: Authorization granted
     SP->>STS: Request to exchange the SAML2 bearer token 
     STS-->>SP: Access Token
+    end
+
     SP->>RS: Request resources with Access Token
 ````
