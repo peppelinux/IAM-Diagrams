@@ -134,7 +134,7 @@ sequenceDiagram
  
  rect rgba(0, 0, 255, .1)
  Service Provider->>AA: Authz Request<br>HTTP POST to https://aa.example.org/oauth2/authorization<br>parameters<br>scope response_type state code_challenge code_challenge_method client_id
- AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint/registered_path<br>code client_id scope state iss
+ AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint<br>code client_id scope state iss
  end
  
  rect rgba(226, 252, 229, .1)
