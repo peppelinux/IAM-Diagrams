@@ -139,11 +139,14 @@ sequenceDiagram
  
  rect rgba(226, 252, 229, .1)
  Service Provider->>AA: Token Exchance<br>HTTP POST with Basic Auth<br>https://aa.example.org/oauth2/token/exchange/saml2<br>-<br>client_id state code code_verifier grant_type <br> requested_token_type subject_token subject_token_type
- AA-->>AA: Stores the token<br>related to<br>SP, user, scope.
- AA-->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
+ Note over AA: Optionally send a <br>consent request to <br> user
+ AA->>AA: Stores the token<br>related to<br>SP, user, scope.
+ AA-->>Service Provider: OK Status 200
+ AA->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
+ Service Provider-->>AA: OK Status 200
  end
 
- Service Provider-->>Service Provider: Stores the token<br>related to<br>AA, user, scope.
+ Service Provider->>Service Provider: Stores the token<br>related to<br>AA, user, scope.
 ````
 
 
