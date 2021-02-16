@@ -1,3 +1,18 @@
+# SAML2 simple
+````
+sequenceDiagram
+    Utente->>SP: richiesta di accesso
+    SP-->>Utente: richiesta per IDP
+    Utente->>+IDP: inoltro richiesta di accesso
+    IDP-->>Utente: pagina immissione credenziali
+    Utente->>IDP: sottomissione credenziali e consenso
+
+    IDP-->>-Utente: Autenticazione avvenuta: esito per SP
+    Utente->>SP: inoltro esito
+
+````
+
+
 # SAML2 AuthnFlow with Discovery Service
 
 ````
