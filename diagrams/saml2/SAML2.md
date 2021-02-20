@@ -112,7 +112,7 @@ Note over User-Agent,Identity Provider: A SAML2 Authn occour between AA and IDP 
  Service Provider-->>-User-Agent: Redirect to resource
 ````
 
-SP to AA with Token Exchange
+# SP to AA with Token Exchange
 
 ````
 sequenceDiagram
@@ -142,7 +142,7 @@ sequenceDiagram
 ````
 
 
-Token exchange SAML2 - OAuth2
+# Token exchange SAML2 - OAuth2
 ````
 sequenceDiagram
  Note right of Service Provider: The Service Provider already have been registered to the Attribute Authority
@@ -156,9 +156,7 @@ sequenceDiagram
  Service Provider->>AA: Token Exchance<br>HTTP POST with Basic Auth<br>https://aa.example.org/oauth2/token/exchange/saml2<br>-<br>client_id state code code_verifier grant_type <br> requested_token_type subject_token subject_token_type
  Note over AA: Optionally send a <br>consent request to <br> user
  AA->>AA: Stores the token<br>related to<br>SP, user, scope.
- AA-->>Service Provider: OK Status 200
- AA->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
- Service Provider-->>AA: OK Status 200
+ AA-->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
  end
 
  Service Provider->>Service Provider: Stores the token<br>related to<br>AA, user, scope.
