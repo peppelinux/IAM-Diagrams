@@ -149,12 +149,11 @@ sequenceDiagram
  
  rect rgba(0, 0, 255, .1)
  Service Provider->>AA: Authz Request<br>HTTP POST to https://aa.example.org/oauth2/authorization<br>parameters<br>scope response_type state code_challenge code_challenge_method client_id
- AA->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint/registered_path<br>code client_id scope state iss
+ AA-->>Service Provider: Authz Granted<br>HTTP GET to https://sp.example.org/authz_code_endpoint/registered_path<br>code client_id scope state iss
  end
  
  rect rgba(226, 252, 229, .1)
  Service Provider->>AA: Token Exchance<br>HTTP POST with Basic Auth<br>https://aa.example.org/oauth2/token/exchange/saml2<br>-<br>client_id state code code_verifier grant_type <br> requested_token_type subject_token subject_token_type
- Note over AA: Optionally send a <br>consent request to <br> user
  AA->>AA: Stores the token<br>related to<br>SP, user, scope.
  AA-->>Service Provider: HTTP JSON Response with: <br>access_token issued_token_type token_type expires_in
  end
