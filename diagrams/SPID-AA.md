@@ -1,5 +1,15 @@
 ````
 sequenceDiagram
+    User->>SP: 1. HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Note over SP: Un JWT access_token<br> viene approvvigionato<br>secondo quanto definito in ModI
+    SP->>AA: 2. HTTP Request<br>Attributi estesi<br>Http Header conforme al profilo di Authenticazione ModI
+    AA-->>AA: Validazione bearer token
+    AA-->>SP: 3. HTTP Response 200 <br>Attributi estesi in formato JWT o JSON
+    SP -->>+User: 4. HTTP/1.1 200 Found<br>Pagina della risorsa protetta
+````
+
+````
+sequenceDiagram
     User->>SP: 1. HTTP Request<br>Risorsa con <br>Attributi estesi
     SP->>AA: 2. HTTP Request<br>Attributi estesi
     AA-->>SP: 3. HTTP Response 403 <br>{authorization_endpoint: <br>https://aa.it/authorization?...<br>error_description: <br>"consent required"}
