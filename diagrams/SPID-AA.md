@@ -55,3 +55,14 @@ sequenceDiagram
     AS->>AS: 7b. Validate requests, requester and scopes
     AS-->>SP: 7c. Token Response <br>{"access_token": “...”,<br>"token_type": "Bearer",<br>"refresh_token": "...",<br>"expires_in": 3600,<br>"id_token": "..."}
 ````
+
+````
+sequenceDiagram
+    User->>SP: 1. HTTP Request<br>Risorsa con <br>Attributi estesi
+    SP->>AA: 2. HTTP Request<br>Attributi estesi
+    AA-->>SP: 3. HTTP Response 403 <br>{error_description: "consent required"}
+    SP->>SP: Create an Authz Request to AS
+    SP -->>+User: 4a. HTTP/1.1 302 Found<br>Location: https://aa.it/authorization?...
+    User->>-AS: 4b. Authorization request using https://aa.it/authorization?...
+    AS->>AS: Processes Authorization request and <br>create an Authn Request to<br> a SPID IdP
+````
