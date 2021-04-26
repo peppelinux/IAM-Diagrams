@@ -12,13 +12,14 @@ sequenceDiagram
 sequenceDiagram
     User->>SP: 1. HTTP Request<br>Risorsa con <br>Attributi estesi
     SP->>AA: 2. HTTP Request<br>Attributi estesi
-    AA-->>SP: 3. HTTP Response 403 <br>{authorization_endpoint: <br>https://aa.it/authorization?...<br>error_description: <br>"consent required"}
-    SP -->>+User: 4a. HTTP/1.1 302 Found<br>Location: <br>https://aa.it/authorization?...
-    User->>-AS: 4.b. Authorization request using https://aa.it/authorization?...
-    
+    AA-->>SP: 3. HTTP Response 403 <br>{error_description: "consent required"}
+    SP->>SP: Create an Authz Request to AS
+    SP -->>+User: 4. HTTP/1.1 302 Found<br>Location: https://aa.it/authorization?...
+    User->>-AS: 5. Authorization request using https://aa.it/authorization?...
     AS->>AS: Processes Authorization request and <br>create an Authn Request to<br> a SPID IdP
-    AS-->>User: 5. Authn Request to be forwarded to IdP
-    User->>IdP: 6. Authn Request
+    
+    AS-->>User: 6. Authn Request to be forwarded to IdP
+    User->>IdP: 7. Authn Request 
 ````
 
 
