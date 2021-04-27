@@ -44,7 +44,7 @@ sequenceDiagram
     User-->AS: Sends Authn Response created by IdP
     AS-->>User: 6a. Show user consent page
     User->>AS: 6b. Give consent
-    AS-->AS: 6c. Processes and validate<br> the Request
+    AS->>AS: 6c. Processes and validate<br> the Request
     AS-->>User: 6d. HTTP Response 302 - URL with an authorization response
     User->>SP: Sends Authz response with code
 ````
