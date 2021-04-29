@@ -53,9 +53,9 @@ sequenceDiagram
 sequenceDiagram
     SP->>AS: 7a. Token endpoint Request using authz code and private_key_jwt
     AS->>AS: 7b. Validate requests, requester and scopes
-    AS-->>SP: 7c. Token Response <br>{"access_token": “...”,<br>"token_type": "Bearer",<br>"refresh_token": "...",<br>"expires_in": 3600,<br>"id_token": "..."}
+    AS-->>SP: 7c. Token Response <br>&nbsp<br>{"access_token": “...”,<br>&nbsp&nbsp&nbsp&nbsp&nbsp"token_type": "Bearer",<br>&nbsp&nbsp"refresh_token": "...",<br>"expires_in": 3600,<br>"id_token": "........"}
 ````
-
+    
 ````
 sequenceDiagram
     User->>SP: 1. HTTP Request<br>Risorsa con <br>Attributi estesi
