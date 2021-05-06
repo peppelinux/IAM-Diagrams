@@ -1,16 +1,55 @@
-https://www.google.com/url?q=https://mermaid-js.github.io/mermaid-live-editor/%23/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PkZydWl0b3JlOiAxLiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBhY2Nlc3NpYmlsZSBjb24gQXR0cmlidXRpIGVzdGVzaVxuICAgIEZydWl0b3JlIC0-PiBGcnVpdG9yZTogVmFsdXRhIHNlIGdpw6AgaW4gcG9zc2Vzc28gZGkgdW5hIGF1dG9yaXp6YXppb25lIHByZXNzbyBsYSBBQSA8YnI-cGVyIGlsIHNvZ2dldHRvIHJpY2hpZWRlbnRlOiBOZWdhdGl2by5cbiAgICBGcnVpdG9yZSAtPj4gRnJ1aXRvcmU6IFZhbHV0YSBzZSBnacOgIHJlZ2lzdHJhdG8gY29tZSBjbGllbnQgcHJlc3NvIGxhIEFBOiBOZWdhdGl2b1xuICAgIEZydWl0b3JlLT4-UERORDogUmljaGllc3RhIGRpIGF1dG9yaXp6YXppb25lICh2b3VjaGVyKVxuICAgIFBETkQtLT4-RnJ1aXRvcmU6IFZvdWNoZXIgZGkgYXV0b3JpenphemlvbmVcbiAgICBGcnVpdG9yZS0-PkFBOiAyLiBIVFRQIFJlcXVlc3Q8YnI-UERORCBWb3VjaGVyIGluIEhUVFAgQXV0aG9yaXphdGlvbiBIZWFkZXI8YnI-cHJlc3NvIC9yZWdpc3RyYXRpb24gZW5kcG9pbnQgXG4gICAgQUEtLT4-RnJ1aXRvcmU6IEh0dHAgUmVzcG9uc2UgZGkgYXZ2ZW51dGEgcmVnaXN0cmF6aW9uZVxuICAgIEZydWl0b3JlIC0tPj5Vc2VyOiBIVFRQLzEuMSAzMDIgRm91bmQ8YnI-TG9jYXRpb246IGh0dHBzOi8vYWEuaXQvYXV0aG9yaXphdGlvbj8uLi5cbiAgICBVc2VyLT4-QUE6IEF1dGhvcml6YXRpb24gcmVxdWVzdCB1c2luZyBodHRwczovL2FhLml0L2F1dGhvcml6YXRpb24_Li4uXG4iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0&sa=D&source=editors&ust=1620297840967000&usg=AOvVaw1LqpWECTo9DdtIzveLkQKD
+sequenceDiagram
+    Fruitore ->> PDND: Richiesta di Discovery Erogatore<br> per l'acquisizione di attributi qualificati<br>per tipologia
+    PDND -->> Fruitore: Risposta con identificativo univoco<br>di uno o più soggetti Erogatori
+    Fruitore ->> PDND: Richiesta acquisizione Attributi<br>del soggetto Erogatore destinatario<br>[schema di interoperabilità, contratto ...]
+    PDND -->> Fruitore: Risposta con specifiche Erogatore
+    Fruitore ->> Fruitore: Valutazione meccanismo di interazione:<br> 1. Diretto (Machine2Machine)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp2. Mediato dall'utente (autenticazione e consenso)
+    Fruitore ->> Erogatore (AA): Richiesta di attributi qualificati secondo il modello di interoperabilità
 
-https://www.google.com/url?q=https://mermaid-js.github.io/mermaid-live-editor/%23/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PlNQOiAxLiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBjb24gPGJyPkF0dHJpYnV0aSBlc3Rlc2lcbiAgICBTUC0-PkFBOiAyLiBIVFRQIFJlcXVlc3Q8YnI-QXR0cmlidXRpIGVzdGVzaVxuICAgIEFBLS0-PlNQOiAzLiBIVFRQIFJlc3BvbnNlIDQwMyA8YnI-e2Vycm9yX2Rlc2NyaXB0aW9uOiBcImNvbnNlbnQgcmVxdWlyZWRcIn1cbiAgICBTUC0-PlNQOiBDcmVhdGUgYW4gQXV0aHogUmVxdWVzdCB0byBBU1xuICAgIFNQIC0tPj5Vc2VyOiA0LiBIVFRQLzEuMSAzMDIgRm91bmQ8YnI-TG9jYXRpb246IGh0dHBzOi8vYWEuaXQvYXV0aG9yaXphdGlvbj8uLi5cbiAgICBVc2VyLT4-QUE6IDUuIEF1dGhvcml6YXRpb24gcmVxdWVzdCB1c2luZyBodHRwczovL2FhLml0L2F1dGhvcml6YXRpb24_Li4uXG4gICAgQUEtPj5BQTogVmFsaWRhemlvbmUgZGVsbGEgcmljaGllc3RhOjxicj5JbCBTUCDDqCByaWNvbm9zY2l1dG8gLT4gTWVjY2FuaXNtbyBkaSB0cnVzdFxuICAgIEFBLT4-QUE6IFByb2Nlc3NlcyBBdXRob3JpemF0aW9uIHJlcXVlc3QgYW5kIDxicj5jcmVhdGUgYW4gQXV0aG4gUmVxdWVzdCB0bzxicj4gYSBTUElEIElkUFxuICAgIFxuICAgIEFBLS0-PlVzZXI6IDYuIEF1dGhuIFJlcXVlc3QgdG8gYmUgZm9yd2FyZGVkIHRvIElkUFxuICAgIFVzZXItPj5JZFA6IDcuIEF1dGhuIFJlcXVlc3QgIiwibWVybWFpZCI6e30sInVwZGF0ZUVkaXRvciI6ZmFsc2V9&sa=D&source=editors&ust=1620298358626000&usg=AOvVaw2T3Qki6-OOXkk6r8uvMWxa
+sequenceDiagram
+    User->>Fruitore: 1. HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Note over Fruitore,PDND: il meccanismo di Discovery può avvenire
+    Fruitore->>AA: 2. HTTP Request<br>Attributi estesi
+    AA-->>Fruitore: 3. HTTP Response 200 <br>Attributi estesi in formato JWT
+    Fruitore -->>+User: 4. HTTP/1.1 200 <br>Pagina della risorsa protetta
 
-https://www.google.com/url?q=https://mermaid-js.github.io/mermaid-live-editor/%23/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PkZydWl0b3JlOiAxLiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBhY2Nlc3NpYmlsZSBjb24gQXR0cmlidXRpIGVzdGVzaVxuICAgIEZydWl0b3JlLT4-UERORDogUmljaGllc3RhIGRpIGF1dG9yaXp6YXppb25lICh2b3VjaGVyKVxuICAgIFBETkQtLT4-RnJ1aXRvcmU6IFZvdWNoZXIgZGkgYXV0b3JpenphemlvbmVcbiAgICBGcnVpdG9yZS0-PkFBOiAyLiBIVFRQIFJlcXVlc3Q8YnI-QXR0cmlidXRpIGVzdGVzaTxicj5IdHRwIEhlYWRlciBhdXRob3JpemF0aW9uIGNvbiBWb3VjaGVyIFBETkRcbiAgICBBQS0tPj5BQTogVmFsaWRhemlvbmUgYmVhcmVyIHRva2VuXG4gICAgQUEtLT4-RnJ1aXRvcmU6IDMuIEhUVFAgUmVzcG9uc2UgMjAwIDxicj5BdHRyaWJ1dGkgZXN0ZXNpIGluIGZvcm1hdG8gSldUIG8gSlNPTlxuICAgIEZydWl0b3JlIC0tPj4rVXNlcjogNC4gSFRUUC8xLjEgMjAwIEZvdW5kPGJyPlBhZ2luYSBkZWxsYSByaXNvcnNhIHByb3RldHRhIiwibWVybWFpZCI6e30sInVwZGF0ZUVkaXRvciI6ZmFsc2V9&sa=D&source=editors&ust=1620295529694000&usg=AOvVaw3fe_pHcSPg_Ev1eQ39TInm
+sequenceDiagram
+    User->>Fruitore: HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Fruitore ->> Fruitore: Valuta se già in possesso di una autorizzazione presso la AA <br>per il soggetto richiedente: Negativo.
+    Fruitore ->> Fruitore: Valuta se già registrato come client presso la AA: Negativo
+    Fruitore->>PDND: Richiesta di autorizzazione (voucher)
+    PDND-->>Fruitore: Voucher di autorizzazione
+    Fruitore->>AA: HTTP Request<br>PDND Voucher in HTTP Authorization Header<br>presso /registration endpoint 
+    AA-->>Fruitore: Http Response di avvenuta registrazione
+    Fruitore -->>User: HTTP/1.1 302<br>Location: https://aa.it/authorization?...
+    User->>AA: Inoltro richiesta di Authorizzazione  https://aa.it/authorization?...
 
-https://www.google.com/url?q=https://mermaid-js.github.io/mermaid-live-editor/%23/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PkZydWl0b3JlOiAxLiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBhY2Nlc3NpYmlsZSBjb24gQXR0cmlidXRpIGVzdGVzaVxuICAgIE5vdGUgb3ZlciBGcnVpdG9yZSxQRE5EOiBpbCBtZWNjYW5pc21vIGRpIERpc2NvdmVyeSBwdcOyIGF2dmVuaXJlXG4gICAgRnJ1aXRvcmUtPj5BQTogMi4gSFRUUCBSZXF1ZXN0PGJyPkF0dHJpYnV0aSBlc3Rlc2lcbiAgICBBQS0tPj5GcnVpdG9yZTogMy4gSFRUUCBSZXNwb25zZSAyMDAgPGJyPkF0dHJpYnV0aSBlc3Rlc2kgaW4gZm9ybWF0byBKV1QgbyBKU09OXG4gICAgRnJ1aXRvcmUgLS0-PitVc2VyOiA0LiBIVFRQLzEuMSAyMDAgRm91bmQ8YnI-UGFnaW5hIGRlbGxhIHJpc29yc2EgcHJvdGV0dGEiLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0&sa=D&source=editors&ust=1620295805039000&usg=AOvVaw1PHbL84RK5Kc_q8WrIgyTJ
+sequenceDiagram
+    User->>Fruitore: 1. HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Note over Fruitore,PDND: il meccanismo di Discovery può avvenire
+    Fruitore->>PDND: 2. Richiesta di autorizzazione (voucher)
+    PDND-->>Fruitore: 3. Voucher di autorizzazione
+    Fruitore->>AA: 4. HTTP Request<br>Attributi estesi<br>Http Header authorization con Voucher PDND
+    AA->>AA: Validazione bearer token
+    AA-->>Fruitore: 5. HTTP Response 200 Found<br>Attributi estesi in formato JWT
+    Fruitore -->>+User: 6. HTTP/1.1 200 Found<br>Pagina della risorsa protetta
 
-https://www.google.com/url?q=https://mermaid-js.github.io/mermaid-live-editor/%23/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgRnJ1aXRvcmUgLT4-IFBETkQ6IFJpY2hpZXN0YSBkaSBEaXNjb3ZlcnkgRXJvZ2F0b3JlPGJyPiBwZXIgbCdhY3F1aXNpemlvbmUgZGkgYXR0cmlidXRpIHF1YWxpZmljYXRpPGJyPnBlciB0aXBvbG9naWFcbiAgICBQRE5EIC0tPj4gRnJ1aXRvcmU6IFJpc3Bvc3RhIGNvbiBpZGVudGlmaWNhdGl2byB1bml2b2NvPGJyPmRpIHVubyBvIHBpw7kgc29nZ2V0dGkgRXJvZ2F0b3JpXG4gICAgRnJ1aXRvcmUgLT4-IFBETkQ6IFJpY2hpZXN0YSBhY3F1aXNpemlvbmUgQXR0cmlidXRpPGJyPmRlbCBzb2dnZXR0byBFcm9nYXRvcmUgZGVzdGluYXRhcmlvPGJyPltzY2hlbWEgZGkgaW50ZXJvcGVyYWJpbGl0w6AsIGNvbnRyYXR0byAuLi5dXG4gICAgUERORCAtLT4-IEZydWl0b3JlOiBSaXNwb3N0YSBjb24gc3BlY2lmaWNoZSBFcm9nYXRvcmVcbiAgICBGcnVpdG9yZSAtPj4gRnJ1aXRvcmU6IFZhbHV0YXppb25lIG1lY2NhbmlzbW8gZGkgaW50ZXJhemlvbmU6PGJyPiAxLiBEaXJldHRvIChNYWNoaW5lMk1hY2hpbmUpPGJyPiZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcCZuYnNwJm5ic3AmbmJzcDIuIE1lZGlhdG8gZGFsbCd1dGVudGUgKGF1dGVudGljYXppb25lIGUgY29uc2Vuc28pXG4gICAgRnJ1aXRvcmUgLT4-IEVyb2dhdG9yZSAoQUEpOiBSaWNoaWVzdGEgZGkgYXR0cmlidXRpIHF1YWxpZmljYXRpIHNlY29uZG8gaWwgbW9kZWxsbyBkaSBpbnRlcm9wZXJhYmlsaXTDoFxuIiwibWVybWFpZCI6e30sInVwZGF0ZUVkaXRvciI6ZmFsc2V9&sa=D&source=editors&ust=1620295221954000&usg=AOvVaw2Vdj8QboPc8uMbchV6Cud5
-
-==============
-
-https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PkZydWl0b3JlOiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBhY2Nlc3NpYmlsZSBjb24gQXR0cmlidXRpIGVzdGVzaVxuICAgIEZydWl0b3JlIC0-PiBGcnVpdG9yZTogVmFsdXRhIHNlIGdpw6AgaW4gcG9zc2Vzc28gZGkgdW5hIGF1dG9yaXp6YXppb25lIHByZXNzbyBsYSBBQSA8YnI-cGVyIGlsIHNvZ2dldHRvIHJpY2hpZWRlbnRlOiBOZWdhdGl2by5cbiAgICBGcnVpdG9yZSAtPj4gRnJ1aXRvcmU6IFZhbHV0YSBzZSBnacOgIHJlZ2lzdHJhdG8gY29tZSBjbGllbnQgcHJlc3NvIGxhIEFBOiBOZWdhdGl2b1xuICAgIEZydWl0b3JlLT4-UERORDogUmljaGllc3RhIGRpIGF1dG9yaXp6YXppb25lICh2b3VjaGVyKVxuICAgIFBETkQtLT4-RnJ1aXRvcmU6IFZvdWNoZXIgZGkgYXV0b3JpenphemlvbmVcbiAgICBGcnVpdG9yZS0-PkFBOiBIVFRQIFJlcXVlc3Q8YnI-UERORCBWb3VjaGVyIGluIEhUVFAgQXV0aG9yaXphdGlvbiBIZWFkZXI8YnI-cHJlc3NvIC9yZWdpc3RyYXRpb24gZW5kcG9pbnQgXG4gICAgQUEtLT4-RnJ1aXRvcmU6IEh0dHAgUmVzcG9uc2UgZGkgYXZ2ZW51dGEgcmVnaXN0cmF6aW9uZVxuICAgIEZydWl0b3JlIC0tPj5Vc2VyOiBIVFRQLzEuMSAzMDI8YnI-TG9jYXRpb246IGh0dHBzOi8vYWEuaXQvYXV0aG9yaXphdGlvbj8uLi5cbiAgICBVc2VyLT4-QUE6IEF1dGhvcml6YXRpb24gcmVxdWVzdCB1c2luZyBodHRwczovL2FhLml0L2F1dGhvcml6YXRpb24_Li4uXG4iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
-
-https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgVXNlci0-PkZydWl0b3JlOiBIVFRQIFJlcXVlc3Q8YnI-Umlzb3JzYSBhY2Nlc3NpYmlsZSBjb24gQXR0cmlidXRpIGVzdGVzaVxuICAgIEZydWl0b3JlIC0-PiBGcnVpdG9yZTogVmFsdXRhIHNlIGdpw6AgaW4gcG9zc2Vzc28gZGkgdW5hIGF1dG9yaXp6YXppb25lIHByZXNzbyBsYSBBQSA8YnI-cGVyIGlsIHNvZ2dldHRvIHJpY2hpZWRlbnRlOiBOZWdhdGl2by5cbiAgICBGcnVpdG9yZSAtPj4gRnJ1aXRvcmU6IFZhbHV0YSBzZSBnacOgIHJlZ2lzdHJhdG8gY29tZSBjbGllbnQgcHJlc3NvIGxhIEFBOiBOZWdhdGl2b1xuICAgIEZydWl0b3JlLT4-UERORDogUmljaGllc3RhIGRpIGF1dG9yaXp6YXppb25lICh2b3VjaGVyKVxuICAgIFBETkQtLT4-RnJ1aXRvcmU6IFZvdWNoZXIgZGkgYXV0b3JpenphemlvbmVcbiAgICBGcnVpdG9yZS0-PkFBOiBIVFRQIFJlcXVlc3Q8YnI-UERORCBWb3VjaGVyIGluIEhUVFAgQXV0aG9yaXphdGlvbiBIZWFkZXI8YnI-cHJlc3NvIC9yZWdpc3RyYXRpb24gZW5kcG9pbnQgXG4gICAgQUEtLT4-RnJ1aXRvcmU6IEh0dHAgUmVzcG9uc2UgZGkgYXZ2ZW51dGEgcmVnaXN0cmF6aW9uZVxuICAgIEZydWl0b3JlIC0tPj5Vc2VyOiBIVFRQLzEuMSAzMDI8YnI-TG9jYXRpb246IGh0dHBzOi8vYWEuaXQvYXV0aG9yaXphdGlvbj8uLi5cbiAgICBVc2VyLT4-QUE6IEF1dGhvcml6YXRpb24gcmVxdWVzdCB1c2luZyBodHRwczovL2FhLml0L2F1dGhvcml6YXRpb24_Li4uXG4iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
-
+sequenceDiagram
+    User->>Fruitore: 1. HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Fruitore->>PDND: 2. Richiesta di autorizzazione (voucher)
+    PDND-->>Fruitore: 3. Voucher di autorizzazione
+    Fruitore->>AA: 4. HTTP Request<br>Attributi estesi<br>HTTP Header Authorization con Voucher PDND
+    AA->>AA: Validazione bearer token
+    AA-->>Fruitore: 5. HTTP Response 200 Found<br>Attributi in formato JWT firmato
+    Fruitore -->>+User: 6. HTTP/1.1 200 Found<br>Pagina della risorsa protetta
+  
+  sequenceDiagram
+    User->>Fruitore: 1. HTTP Request<br>Risorsa accessibile con Attributi estesi
+    Fruitore ->> Fruitore: Valuta se già in possesso di una autorizzazione presso la AA <br>per il soggetto richiedente: Negativo.
+    Fruitore ->> Fruitore: Valuta se già registrato come client presso la AA: Negativo
+    Fruitore->>PDND: Richiesta di autorizzazione (voucher)
+    PDND-->>Fruitore: Voucher di autorizzazione
+    Fruitore->>AA: 2. HTTP Request<br>PDND Voucher in HTTP Authorization Header<br>presso /registration endpoint 
+    AA-->>Fruitore: Http Response di avvenuta registrazione
+    Fruitore -->>User: HTTP/1.1 302<br>Location: https://aa.it/authorization?...
+    User->>AA: Inoltro richiesta di autorizzazione presso: https://aa.it/authorization?...
