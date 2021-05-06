@@ -1,4 +1,27 @@
 sequenceDiagram
+    Utente->>SP: richiesta di autenticazione
+    SP->>MDQ: chiamata REST per il download delle entità IdP
+    MDQ-->>SP: [{entity_id: xxx, <br>display_name: yyy, <br>display_logo: zzz.png, <br>display_description: xyz}, <br>{...}]
+    SP->>SP: rendering template SPID Button
+    SP-->>Utente: pagina SPID Button
+    Utente->>SP: selezione IdP SPID
+
+    SP->>MDQ: Fetch metadata per entityID IdP
+    MDQ-->>SP: Response Content-type/xml con Metadata IdP firmato
+    SP->>SP: Creazione AuthnRequest per conto dell'utente
+
+    SP-->>Utente: richiesta per IDP
+    Utente->>+IDP: inoltro richiesta di accesso
+    IDP->>MDQ: Fetch metadata per entityID SP (richiedente)
+    MDQ-->>IDP: Response Content-type/xml con Metadata SP firmato
+    IDP-->>Utente: pagina immissione credenziali
+    Utente->>IDP: sottomissione credenziali e consenso
+
+    IDP-->>-Utente: Autenticazione avvenuta: esito per SP
+    Utente->>SP: inoltro esito
+
+
+sequenceDiagram
     Fruitore ->> PDND: Richiesta di Discovery Erogatore<br> per l'acquisizione di attributi qualificati<br>per tipologia
     PDND -->> Fruitore: Risposta con identificativo univoco<br>di uno o più soggetti Erogatori
     Fruitore ->> PDND: Richiesta acquisizione Attributi<br>del soggetto Erogatore destinatario<br>[schema di interoperabilità, contratto ...]
