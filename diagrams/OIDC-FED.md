@@ -45,3 +45,25 @@ user->op: Automatic Client Registration Request
 
 ````
 
+
+[SPID RP to OP](https://mermaid-js.github.io/mermaid-live-editor/edit#eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gIFVzZXIgLT4-IFNQSUQvQ0lFIFJQOiBSZXF1ZXN0IHRvIGEgcHJvdGVjdGVkIHJlc291cmNlXG4gIFNQSUQvQ0lFIFJQIC0tPj4gVXNlcjogRGlzY292ZXJ5IFBhZ2VcbiAgVXNlciAtPj4gU1BJRC9DSUUgUlA6IFNlbGVjdCB0aGUgZGVzaWRlcmVkIElkZW50aXR5IFByb3ZpZGVyIG9wLnNwaWQuaXRcbiAgU1BJRC9DSUUgUlAgLT4-IFNQSUQvQ0lFIChPUCk6IEZlZGVyYXRpb24gRW50aXR5IENvbmZpZ3VyYXRpb24gUmVxdWVzdDxicj5odHRwczovL29wLnNwaWQuaXQvLndlbGwta25vd24vb3BlbmlkLWZlZGVyYXRpb25cbiAgU1BJRC9DSUUgKE9QKSAtLT4-IFNQSUQvQ0lFIFJQOiBGZWRlcmF0aW9uIEVudGl0eSBDb25maWd1cmF0aW9uIFJlc3BvbnNlPGJyPkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vam9zZVxuICBTUElEL0NJRSBSUCAtPj4gU1BJRC9DSUUgUlA6IFJlc3BvbnNlIFZhbGlkYXRpb248YnI-Um91dGUgdG8gYXV0aG9yaXR5X2hpbnQ8YnI-IGh0dHBzOi8vcmVnaXN0cnkuc3BpZC5pdFxuXG4gIFNQSUQvQ0lFIFJQIC0-PiBTUElEL0NJRSBGZWQgQXV0aDogRmVkZXJhdGlvbiBFbnRpdHkgQ29uZmlndXJhdGlvbiBSZXF1ZXN0PGJyPmh0dHBzOi8vcmVnaXN0cnkuc3BpZC5pdC8ud2VsbC1rbm93bi9vcGVuaWQtZmVkZXJhdGlvblxuICBTUElEL0NJRSBGZWQgQXV0aCAtLT4-IFNQSUQvQ0lFIFJQOiBGZWRlcmF0aW9uIEVudGl0eSBDb25maWd1cmF0aW9uIFJlc3BvbnNlPGJyPkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vam9zZVxuICBTUElEL0NJRSBSUCAtPj4gU1BJRC9DSUUgUlA6IFJlc3BvbnNlIFZhbGlkYXRpb25cbiAgU1BJRC9DSUUgUlAgLT4-IFNQSUQvQ0lFIEZlZCBBdXRoOiBSZXF1ZXN0IHRvIEF1dGhvcml0eSBhYm91dCBpdHMgZGVzY2VuZGFudDxicj4vb2lkYy9mZWRhcGk_c3ViPWh0dHBzJTNBJTJGJTJGb3Auc3BpZC5pdFxuICBTUElEL0NJRSBSUCAtPj4gU1BJRC9DSUUgUlA6IFZhbGlkYXRlIFJlc3BvbnNlPGJyPkFjcXVpcmUgcG9saWN5XG5cbiAgU1BJRC9DSUUgUlAgLT4-IFNQSUQvQ0lFIFJQOiBUcnVzdCBjaGFpbiB2YWxpZGF0aW9uXG4gIFNQSUQvQ0lFIFJQIC0tPj4gVXNlcjogSFRUUCAzMDIgPGJyPmh0dHBzOi8vb3Auc3BpZC5pdC9hdXRob3JpemU_PGJyPnJlcXVlc3Q9ZXlKaGJHWy4uLl1yck9TZ3c8YnI-JnJlc3BvbnNlX3R5cGU9Y29kZTxicj4mY2xpZW50X2lkPWh0dHBzJTNBJTJGJTJGcnAuc3BpZC5pdDxicj4mcmVkaXJlY3RfdXJpPWh0dHBzJTNBJTJGJTJGcnAuc3BpZC5pdC9vcGVuaWQvY2FsbGJhY2s8YnI-JnNjb3BlPW9wZW5pZFxuICBVc2VyIC0-PiBTUElEL0NJRSAoT1ApOiBBdXRvbWF0aWMgQ2xpZW50IFJlZ2lzdHJhdGlvbiBSZXF1ZXN0IiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)
+
+````
+sequenceDiagram
+  User ->> SPID/CIE RP: Request to a protected resource
+  SPID/CIE RP -->> User: Discovery Page
+  User ->> SPID/CIE RP: Select the desidered Identity Provider op.spid.it
+  SPID/CIE RP ->> SPID/CIE (OP): Federation Entity Configuration Request<br>https://op.spid.it/.well-known/openid-federation
+  SPID/CIE (OP) -->> SPID/CIE RP: Federation Entity Configuration Response<br>Content-Type: application/jose
+  SPID/CIE RP ->> SPID/CIE RP: Response Validation<br>Route to authority_hint<br> https://registry.spid.it
+
+  SPID/CIE RP ->> SPID/CIE Fed Auth: Federation Entity Configuration Request<br>https://registry.spid.it/.well-known/openid-federation
+  SPID/CIE Fed Auth -->> SPID/CIE RP: Federation Entity Configuration Response<br>Content-Type: application/jose
+  SPID/CIE RP ->> SPID/CIE RP: Response Validation
+  SPID/CIE RP ->> SPID/CIE Fed Auth: Request to Authority about its descendant<br>/oidc/fedapi?sub=https%3A%2F%2Fop.spid.it
+  SPID/CIE RP ->> SPID/CIE RP: Validate Response<br>Acquire policy
+
+  SPID/CIE RP ->> SPID/CIE RP: Trust chain validation
+  SPID/CIE RP -->> User: HTTP 302 <br>https://op.spid.it/authorize?<br>request=eyJhbG[...]rrOSgw<br>&response_type=code<br>&client_id=https%3A%2F%2Frp.spid.it<br>&redirect_uri=https%3A%2F%2Frp.spid.it/openid/callback<br>&scope=openid
+  User ->> SPID/CIE (OP): Automatic Client Registration Request
+````
